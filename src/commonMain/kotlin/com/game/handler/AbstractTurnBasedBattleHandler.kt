@@ -1,7 +1,6 @@
 package com.game.handler
 
 import com.game.args.BattleArgs
-import com.game.env.BattleEnv
 import com.game.env.TurnBasedBattleEnv
 
 /**
@@ -11,8 +10,6 @@ abstract class AbstractTurnBasedBattleHandler : BattleHandler<TurnBasedBattleEnv
 
     override fun createBattle(args: BattleArgs): TurnBasedBattleEnv {
         val env = TurnBasedBattleEnv()
-        // todo
-        env.id = 0
         env.battleArgs = args
         env.init()
         return env

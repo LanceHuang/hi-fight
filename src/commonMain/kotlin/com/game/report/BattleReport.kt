@@ -5,6 +5,9 @@ package com.game.report
  */
 open class BattleReport {
 
+    /** 版本号 */
+    var version: String = ""
+
     /** 战斗id */
     var id: Long = 0
 
