@@ -41,6 +41,11 @@ kotlin {
                 implementation(kotlin("stdlib-jdk8"))
             }
         }
+        jvmTest {
+            dependencies {
+                implementation(kotlin("test-junit"))
+            }
+        }
         jsMain {
             dependencies {
                 implementation(kotlin("stdlib-js"))

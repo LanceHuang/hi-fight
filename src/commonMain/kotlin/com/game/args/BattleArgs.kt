@@ -10,7 +10,7 @@ import kotlin.random.Random
 /**
  * 战斗参数
  */
-class BattleArgs(
+open class BattleArgs(
     /** 战斗id */
     var id: Long,
 
@@ -31,7 +31,7 @@ class BattleArgs(
 ) {
 
     /** 战斗阵营 */
-    var campMap: Map<Int, BattleCamp> = mapOf()
+    val campMap: MutableMap<Int, BattleCamp> = mutableMapOf()
 
     /** 战斗类型 */
     var battleType: BattleType = BattleType.DEFAULT_TURN_BASED
@@ -46,5 +46,5 @@ class BattleArgs(
     var settleStrategy: BattleSettleStrategyType = BattleSettleStrategyType.DEFENDER_FIRST
 
     /** 拓展参数 */
-    val ext: Map<BattleArgsExt, Any> = mapOf()
+    val ext: MutableMap<BattleArgsExt, Any> = mutableMapOf()
 }

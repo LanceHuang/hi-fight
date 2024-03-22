@@ -12,11 +12,33 @@ class BattleCamp {
     val campInfo: BattleCampInfo? = null
 
     /** 静态战斗单元 */
-    val staticMap: Map<Int, BattleUnit> = mapOf()
+    val staticMap: MutableMap<Int, BattleUnit> = mutableMapOf()
 
     /** 动态战斗单元 */
-    val dynamicMap: Map<Int, BattleUnit> = mapOf()
+    val dynamicMap: MutableMap<Int, BattleUnit> = mutableMapOf()
 
     /** 拓展参数 */
-    val ext: Map<BattleArgsExt, Any> = mapOf()
+    val ext: MutableMap<BattleArgsExt, Any> = mutableMapOf()
+
+    /** 静态战斗单元站位 */
+    var staticIndex: Int = 1
+
+    /** 动态战斗单元站位 */
+    var dynamicIndex: Int = 100
+
+    /**
+     * 添加静态单元
+     */
+    fun addStaticUnit(unit: BattleUnit) {
+        staticMap[staticIndex] = unit
+        staticIndex++
+    }
+
+    /**
+     * 添加动态单元
+     */
+    fun addDynamicUnit(unit: BattleUnit) {
+        dynamicMap[dynamicIndex] = unit
+        dynamicIndex++
+    }
 }

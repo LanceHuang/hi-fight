@@ -12,7 +12,7 @@ class BattleEngineTest {
             id = System.currentTimeMillis(),
             type = 10,
             mapId = 555,
-            createTime = System.currentTimeMillis()
+            createTime = System.currentTimeMillis(),
         )
 
         // 计算战斗
