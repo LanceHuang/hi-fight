@@ -6,7 +6,7 @@ import com.game.base.BattleEnv
 /**
  * 即时制战斗
  */
-abstract class AbstractRealTimeBattleHandler : BattleHandler {
+open class DefaultRealTimeBattleHandler : BattleHandler {
 
     override fun createBattle(args: BattleArgs): BattleEnv {
         TODO("Not yet implemented")

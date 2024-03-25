@@ -34,7 +34,7 @@ open class BattleArgs(
     val campMap: MutableMap<Int, BattleCamp> = mutableMapOf()
 
     /** 战斗类型 */
-    var battleType: BattleType = BattleType.DEFAULT_TURN_BASED
+    var battleType: BattleType = BattleType.TURN_BASED
 
     /** 行动策略 */
     var actionStrategy: BattleActionStrategyType = BattleActionStrategyType.SPEED_FIRST
