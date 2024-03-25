@@ -1,13 +1,10 @@
-package com.game.attr.op
+package com.game.attr.calc
 
 import com.game.attr.AttributeType
 
-/**
- * 默认属性算子
- */
-class DefaultAttributeOperator(
+class DefaultAttributeCalc(
     private val attributeType: AttributeType,
-) : AttributeOperator {
+) : AttributeCalc {
 
     override fun calculate(collectMap: Map<AttributeType, Long>, computeMap: Map<AttributeType, Long>): Long {
         return collectMap[attributeType] ?: 0

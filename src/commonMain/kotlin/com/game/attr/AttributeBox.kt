@@ -1,6 +1,6 @@
 package com.game.attr
 
-import com.game.attr.op.AttributeRegistry
+import com.game.attr.calc.AttributeCalcRegistry
 import com.game.common.Module
 
 /**
@@ -67,7 +67,7 @@ open class AttributeBox<T> {
 
         // 分层计算
         val computeMap: MutableMap<AttributeType, Long> = mutableMapOf()
-        AttributeRegistry.attributeOps.forEach {
+        AttributeCalcRegistry.attributeCalc.forEach {
             val result = it.value.calculate(collectMap, computeMap)
             computeMap[it.key] = result
         }
@@ -83,7 +83,11 @@ open class AttributeBox<T> {
     fun collect(): Map<AttributeType, Long> {
         val attributeMap: MutableMap<AttributeType, Long> = mutableMapOf()
         this.moduleMap.values.forEach {
-            attributeMap += it
+            it.forEach { innerIt ->
+                val oldValue = attributeMap[innerIt.key] ?: 0
+                val newValue = innerIt.key.opType.calculate(oldValue, innerIt.value)
+                attributeMap[innerIt.key] = newValue
+            }
         }
         return attributeMap
     }

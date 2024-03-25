@@ -1,11 +1,11 @@
-package com.game.attr.op
+package com.game.attr.calc
 
 import com.game.attr.AttributeType
 
 /**
- * 属性算子
+ * 属性计算
  */
-interface AttributeOperator {
+interface AttributeCalc {
 
     /**
      * 计算属性值

@@ -1,17 +1,17 @@
-package com.game.attr.op
+package com.game.attr.calc
 
 import com.game.attr.AttributeConfigs
 import com.game.attr.AttributeType
 import kotlin.math.roundToLong
 
 /**
- * 有加成的属性算子
+ * 加成属性计算
  */
-class IncreaseAttributeOperator(
+class IncreaseAttributeCalc(
     private val baseType: AttributeType,
     private val incType: AttributeType? = null,
     private val fixType: AttributeType? = null,
-) : AttributeOperator {
+) : AttributeCalc {
 
     override fun calculate(collectMap: Map<AttributeType, Long>, computeMap: Map<AttributeType, Long>): Long {
         val baseValue = collectMap[baseType] ?: 0

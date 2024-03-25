@@ -1,29 +1,29 @@
-package com.game.attr.op
+package com.game.attr.calc
 
 import com.game.attr.AttributeType
 
 /**
  * 属性注册表
  */
-object AttributeRegistry {
+object AttributeCalcRegistry {
 
-    val attributeOps: MutableMap<AttributeType, AttributeOperator> = mutableMapOf()
+    val attributeCalc: MutableMap<AttributeType, AttributeCalc> = mutableMapOf()
 
     init {
         // 特殊配置
-        attributeOps[AttributeType.ATK] = IncreaseAttributeOperator(
+        attributeCalc[AttributeType.ATK] = IncreaseAttributeCalc(
             baseType = AttributeType.ATK, incType = AttributeType.ATK_INCREASE, fixType = AttributeType.ATK_FIX
         )
-        attributeOps[AttributeType.DEF] = IncreaseAttributeOperator(
+        attributeCalc[AttributeType.DEF] = IncreaseAttributeCalc(
             baseType = AttributeType.DEF, incType = AttributeType.DEF_INCREASE, fixType = AttributeType.DEF_FIX
         )
-        attributeOps[AttributeType.MAX_HP] = IncreaseAttributeOperator(
+        attributeCalc[AttributeType.MAX_HP] = IncreaseAttributeCalc(
             baseType = AttributeType.ATK, incType = AttributeType.ATK_INCREASE, fixType = AttributeType.ATK_FIX
         )
 
         // 默认配置
         AttributeType.entries.forEach {
-            if (attributeOps[it] == null) attributeOps[it] = DefaultAttributeOperator(it)
+            if (attributeCalc[it] == null) attributeCalc[it] = DefaultAttributeCalc(it)
         }
 
         // todo 依赖树
