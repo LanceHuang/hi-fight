@@ -1,4 +1,4 @@
-package com.game.unit
+package com.game.base.unit
 
 class MonsterUnit : BattleUnit() {
 }

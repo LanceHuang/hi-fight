@@ -1,15 +1,16 @@
-package com.game.camp
+package com.game.base
 
-import com.game.args.BattleArgsExt
-import com.game.unit.BattleUnit
+import com.game.base.ext.BattleArgsExt
+import com.game.base.unit.BattleUnit
 
 /**
  * 阵营
  */
 class BattleCamp {
 
-    /** 阵营信息 */
-    val campInfo: BattleCampInfo? = null
+    // todo 阵营卡片？
+//    /** 阵营信息 */
+//    val campInfo: BattleCampInfo? = null
 
     /** 静态战斗单元 */
     val staticMap: MutableMap<Int, BattleUnit> = mutableMapOf()

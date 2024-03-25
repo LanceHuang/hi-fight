@@ -1,13 +1,12 @@
-package com.game.env
+package com.game.base
 
-import com.game.args.BattleArgs
 import com.game.report.BattleRecorder
 import com.game.report.BattleReport
 
 /**
  * 战斗环境
  */
-abstract class BattleEnv {
+class BattleEnv {
 
     /** 战斗记录 */
     var battleRecorder: BattleRecorder? = null

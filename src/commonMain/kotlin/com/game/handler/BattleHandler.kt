@@ -1,22 +1,22 @@
 package com.game.handler
 
-import com.game.args.BattleArgs
-import com.game.env.BattleEnv
+import com.game.base.BattleArgs
+import com.game.base.BattleEnv
 
 /**
  * 战斗处理器
  */
-interface BattleHandler<T : BattleEnv> {
+interface BattleHandler {
 
     /** 创建战斗环境 */
-    fun createBattle(args: BattleArgs): T
+    fun createBattle(args: BattleArgs): BattleEnv
 
     /** 初始化战斗环境 */
-    fun initBattle(env: T)
+    fun initBattle(env: BattleEnv)
 
     /** 开始战斗 */
-    fun startBattle(env: T)
+    fun startBattle(env: BattleEnv)
 
     /** 结算战斗 */
-    fun settleBattle(env: T)
+    fun settleBattle(env: BattleEnv)
 }

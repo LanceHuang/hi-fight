@@ -1,4 +1,4 @@
-package com.game.unit
+package com.game.base.unit
 
 /**
  * 战斗单元类型

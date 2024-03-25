@@ -1,4 +1,4 @@
-package com.game.args
+package com.game.base.ext
 
 class HpPercentExtHandler : BattleArgsExtHandler() {
 }

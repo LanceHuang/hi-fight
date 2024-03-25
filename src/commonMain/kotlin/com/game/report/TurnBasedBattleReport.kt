@@ -6,8 +6,8 @@ package com.game.report
 class TurnBasedBattleReport : BattleReport() {
 
     /** 易变部分 */
-    var mutableData: MutableBattleReport = MutableBattleReport()
+    val mutableData: MutableBattleReport = MutableBattleReport()
 
     /** 不易变部分 */
-    var immutableData: ImmutableBattleReport = ImmutableBattleReport()
+    val immutableData: ImmutableBattleReport = ImmutableBattleReport()
 }

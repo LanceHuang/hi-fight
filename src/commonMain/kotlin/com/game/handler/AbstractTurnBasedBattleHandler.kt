@@ -1,21 +1,21 @@
 package com.game.handler
 
-import com.game.args.BattleArgs
-import com.game.env.TurnBasedBattleEnv
+import com.game.base.BattleArgs
+import com.game.base.BattleEnv
 
 /**
  * 回合制战斗
  */
-abstract class AbstractTurnBasedBattleHandler : BattleHandler<TurnBasedBattleEnv> {
+abstract class AbstractTurnBasedBattleHandler : BattleHandler {
 
-    override fun createBattle(args: BattleArgs): TurnBasedBattleEnv {
-        val env = TurnBasedBattleEnv()
+    override fun createBattle(args: BattleArgs): BattleEnv {
+        val env = BattleEnv()
         env.battleArgs = args
         env.init()
         return env
     }
 
-    override fun initBattle(env: TurnBasedBattleEnv) {
+    override fun initBattle(env: BattleEnv) {
         initBattleCamp(env)
         initBattleExt(env)
     }
@@ -23,18 +23,18 @@ abstract class AbstractTurnBasedBattleHandler : BattleHandler<TurnBasedBattleEnv
     /**
      * 初始化阵营
      */
-    private fun initBattleCamp(env: TurnBasedBattleEnv) {
+    private fun initBattleCamp(env: BattleEnv) {
         TODO("Not yet implemented")
     }
 
     /**
      * 初始化拓展参数
      */
-    private fun initBattleExt(env: TurnBasedBattleEnv) {
+    private fun initBattleExt(env: BattleEnv) {
         TODO("Not yet implemented")
     }
 
-    override fun startBattle(env: TurnBasedBattleEnv) {
+    override fun startBattle(env: BattleEnv) {
         executeBattle(env)
         settleBattle(env)
     }
@@ -42,47 +42,61 @@ abstract class AbstractTurnBasedBattleHandler : BattleHandler<TurnBasedBattleEnv
     /**
      * 执行战斗
      */
-    protected fun executeBattle(env: TurnBasedBattleEnv) {
-        while (env.needContinueRing()) {
+    protected fun executeBattle(env: BattleEnv) {
+        while (needContinueRing(env)) {
             preRing(env)
             execRing(env)
             postRing(env)
         }
     }
 
-    private fun preRing(env: TurnBasedBattleEnv) {
+    private fun preRing(env: BattleEnv) {
     }
 
     /**
      * 执行回合
      */
-    protected fun execRing(env: TurnBasedBattleEnv) {
-        while (env.needContinueTurn()) {
+    protected fun execRing(env: BattleEnv) {
+        while (needContinueTurn(env)) {
             preTurn(env)
             execTurn(env)
             postTurn(env)
         }
     }
 
-    private fun postRing(env: TurnBasedBattleEnv) {
+    private fun postRing(env: BattleEnv) {
     }
 
-    private fun preTurn(env: TurnBasedBattleEnv) {
+    private fun preTurn(env: BattleEnv) {
         TODO("Not yet implemented")
     }
 
     /**
      * 执行行动
      */
-    protected fun execTurn(env: TurnBasedBattleEnv) {
+    protected fun execTurn(env: BattleEnv) {
         // todo
     }
 
-    private fun postTurn(env: TurnBasedBattleEnv) {
+    private fun postTurn(env: BattleEnv) {
         TODO("Not yet implemented")
     }
 
-    override fun settleBattle(env: TurnBasedBattleEnv) {
+    override fun settleBattle(env: BattleEnv) {
         TODO("Not yet implemented")
+    }
+
+    /**
+     * 继续回合
+     */
+    fun needContinueRing(env: BattleEnv): Boolean {
+        return false
+    }
+
+    /**
+     * 继续行动
+     */
+    fun needContinueTurn(env: BattleEnv): Boolean {
+        return false
     }
 }

@@ -1,6 +1,6 @@
-package com.game.args
+package com.game.base
 
-import com.game.camp.BattleCamp
+import com.game.base.ext.BattleArgsExt
 import com.game.handler.BattleType
 import com.game.strategy.BattleActionStrategyType
 import com.game.strategy.BattleEndingStrategyType

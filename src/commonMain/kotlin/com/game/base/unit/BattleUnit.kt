@@ -1,4 +1,4 @@
-package com.game.unit
+package com.game.base.unit
 
 import com.game.attr.BattleAttributeBox
 import com.game.buff.BattleBuffBox

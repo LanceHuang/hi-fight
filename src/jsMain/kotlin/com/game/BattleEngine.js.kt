@@ -1,6 +1,6 @@
 package com.game
 
-import com.game.args.BattleArgs
+import com.game.base.BattleArgs
 import com.game.report.BattleReport
 
 actual class BattleEngine {
