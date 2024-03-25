@@ -5,9 +5,9 @@ package com.game.handler
  */
 enum class BattleType(
     /** 描述 */
-    desc: String,
+    val desc: String,
     /** 处理器 */
-    handler: BattleHandler,
+    val handler: BattleHandler,
 ) {
 
     TURN_BASED("回合制战斗", DefaultTurnBasedBattleHandler()),

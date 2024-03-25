@@ -10,5 +10,6 @@ enum class BattleArgsExt(
     handler: BattleArgsExtHandler,
 ) {
 
-    HP_PERCENT("开场血量万分比", HpPercentExtHandler())
+    HP_PERCENT("开场血量万分比", HpPercentExtHandler()),
+    MAX_RING("最大回合数", MaxRingExtHandler()),
 }

@@ -91,4 +91,11 @@ open class AttributeBox<T> {
         }
         return attributeMap
     }
+
+    /**
+     * 获取最终属性值
+     */
+    fun getFinalAttr(attributeType: AttributeType): Long {
+        return finalMap[attributeType] ?: 0L
+    }
 }

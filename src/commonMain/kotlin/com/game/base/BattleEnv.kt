@@ -6,16 +6,19 @@ import com.game.report.BattleReport
 /**
  * 战斗环境
  */
-class BattleEnv {
+open class BattleEnv(
+    /** 战斗参数 */
+    var battleArgs: BattleArgs,
+) {
 
     /** 战斗记录 */
     var battleRecorder: BattleRecorder? = null
 
-    /** 战斗参数 */
-    var battleArgs: BattleArgs? = null
-
     /** 战斗id */
     var id: Long = 0
+
+    /** 战斗阵营 */
+    val campMap: MutableMap<Int, BattleCamp> = mutableMapOf()
 
     /**
      * 初始化
@@ -27,7 +30,7 @@ class BattleEnv {
      * 继续战斗
      */
     fun needContinue(): Boolean {
-        return false
+        return battleArgs.endingStrategy.strategy.needContinue(this)
     }
 
     /**

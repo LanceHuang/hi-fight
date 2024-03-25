@@ -5,9 +5,9 @@ package com.game.strategy
  */
 enum class BattleEndingStrategyType(
     /** 描述 */
-    desc: String,
+    val desc: String,
     /** 策略 */
-    strategy: BattleEndStrategy,
+    val strategy: BattleEndStrategy,
 ) {
 
     MAX_RING("回合数限制", MaxRingEndStrategy()),

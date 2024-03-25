@@ -1,6 +1,7 @@
 package com.game.base
 
 import com.game.base.ext.BattleArgsExt
+import com.game.base.unit.BattleCampInfo
 import com.game.handler.BattleType
 import com.game.strategy.BattleActionStrategyType
 import com.game.strategy.BattleEndingStrategyType
@@ -31,7 +32,7 @@ open class BattleArgs(
 ) {
 
     /** 战斗阵营 */
-    val campMap: MutableMap<Int, BattleCamp> = mutableMapOf()
+    val campMap: MutableMap<Int, BattleCampInfo> = mutableMapOf()
 
     /** 战斗类型 */
     var battleType: BattleType = BattleType.TURN_BASED

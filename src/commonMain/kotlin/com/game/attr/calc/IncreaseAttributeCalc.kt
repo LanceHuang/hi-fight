@@ -1,7 +1,7 @@
 package com.game.attr.calc
 
-import com.game.attr.AttributeConfigs
 import com.game.attr.AttributeType
+import com.game.buff.BattleConfigs
 import kotlin.math.roundToLong
 
 /**
@@ -18,6 +18,6 @@ class IncreaseAttributeCalc(
         val incValue = collectMap[incType] ?: 0
         val fixValue = collectMap[fixType] ?: 0
         // todo 前后端四舍五入精度不同，需要搞个ceilToFix3
-        return (baseValue * (1 + incValue / AttributeConfigs.INCREASE_BASE) + fixValue).roundToLong()
+        return (baseValue * (1 + incValue / BattleConfigs.ATTR_INC_BASE) + fixValue).roundToLong()
     }
 }

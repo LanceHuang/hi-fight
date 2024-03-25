@@ -3,15 +3,14 @@ package com.game.base.unit
 import com.game.base.ext.BattleArgsExt
 
 /**
- * 战斗信息（面向业务）
+ * 阵营信息
  */
-abstract class BattleInfo {
+class BattleCampInfo {
 
+    /** 战斗信息 */
+    val baseMap: MutableMap<Int, BattleInfo> = mutableMapOf()
+
+    // todo 阵营卡片？
     /** 拓展参数 */
     val ext: MutableMap<BattleArgsExt, Any> = mutableMapOf()
-
-    /**
-     * 生成战斗单元
-     */
-    abstract fun createBattleUnit(): BattleUnit
 }

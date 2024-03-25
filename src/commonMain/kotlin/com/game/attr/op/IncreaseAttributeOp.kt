@@ -1,6 +1,6 @@
 package com.game.attr.op
 
-import com.game.attr.AttributeConfigs
+import com.game.buff.BattleConfigs
 import kotlin.math.roundToLong
 
 /**
@@ -9,8 +9,8 @@ import kotlin.math.roundToLong
 class IncreaseAttributeOp : AttributeOp {
     override fun calculate(value1: Long, value2: Long): Long {
         // a + b = (1 + a) * (1 + b) - 1
-        val v1 = (AttributeConfigs.INCREASE_BASE + value1) / AttributeConfigs.INCREASE_BASE
-        val v2 = (AttributeConfigs.INCREASE_BASE + value2) / AttributeConfigs.INCREASE_BASE
-        return (v1 * v2 * AttributeConfigs.INCREASE_BASE - AttributeConfigs.INCREASE_BASE).roundToLong()
+        val v1 = (BattleConfigs.ATTR_INC_BASE + value1) / BattleConfigs.ATTR_INC_BASE
+        val v2 = (BattleConfigs.ATTR_INC_BASE + value2) / BattleConfigs.ATTR_INC_BASE
+        return (v1 * v2 * BattleConfigs.ATTR_INC_BASE - BattleConfigs.ATTR_INC_BASE).roundToLong()
     }
 }
