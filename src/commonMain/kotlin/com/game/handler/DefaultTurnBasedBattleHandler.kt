@@ -9,7 +9,8 @@ import com.game.base.BattleEnv
 open class DefaultTurnBasedBattleHandler : BattleHandler {
 
     override fun createBattle(args: BattleArgs): BattleEnv {
-        val env = BattleEnv()
+        val env = DefaultTurnBasedBattleEnv(args)
+        // todo 战斗时长
         env.battleArgs = args
         env.init()
         return env
@@ -24,14 +25,18 @@ open class DefaultTurnBasedBattleHandler : BattleHandler {
      * 初始化阵营
      */
     private fun initBattleCamp(env: BattleEnv) {
-        TODO("Not yet implemented")
+        env.battleArgs.campMap.forEach {
+            env.campMap[it.key] = it.value.createCamp()
+        }
     }
 
     /**
      * 初始化拓展参数
      */
     private fun initBattleExt(env: BattleEnv) {
-        TODO("Not yet implemented")
+        env.battleArgs.ext.forEach {
+            it.key.handler.handleExt(env, it.value)
+        }
     }
 
     override fun startBattle(env: BattleEnv) {

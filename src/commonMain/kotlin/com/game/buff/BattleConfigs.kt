@@ -8,6 +8,10 @@ class BattleConfigs {
     companion object Instance {
 
         //===================================== 通用 ===============================
+
+        /** 版本号 */
+        const val VERSION: String = "1.0.0"
+
         /** 属性加成基础值 */
         const val ATTR_INC_BASE: Double = 10000.0
 

@@ -1,12 +1,15 @@
 package com.game.report
 
+import com.game.base.BattleResult
+import com.game.buff.BattleConfigs
+
 /**
  * 战报
  */
 open class BattleReport {
 
     /** 版本号 */
-    var version: String = ""
+    var version: String = BattleConfigs.VERSION
 
     /** 战斗id */
     var id: Long = 0
@@ -14,8 +17,11 @@ open class BattleReport {
     /** 战斗类型 */
     var type: Int = 0
 
+    /** 战场id */
+    var mapId: Int = 0
+
     /** 战斗结果 */
-    var result: Int = 0
+    var result: Int = BattleResult.TIE.value
 
     /** 战斗耗时 */
     var costTime: Long = 0

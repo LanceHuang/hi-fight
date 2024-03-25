@@ -5,9 +5,9 @@ package com.game.base.ext
  */
 enum class BattleArgsExt(
     /** 描述 */
-    desc: String,
+    val desc: String,
     /** 处理器 */
-    handler: BattleArgsExtHandler,
+    val handler: BattleArgsExtHandler,
 ) {
 
     HP_PERCENT("开场血量万分比", HpPercentExtHandler()),

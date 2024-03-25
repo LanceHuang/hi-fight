@@ -2,6 +2,8 @@ package com.game.base
 
 import com.game.report.BattleRecorder
 import com.game.report.BattleReport
+import com.game.report.DefaultTurnBasedBattleRecorder
+import com.game.report.EmptyBattleRecorder
 
 /**
  * 战斗环境
@@ -11,19 +13,26 @@ open class BattleEnv(
     var battleArgs: BattleArgs,
 ) {
 
-    /** 战斗记录 */
-    var battleRecorder: BattleRecorder? = null
+    //====================================== 基础信息 ======================================
 
-    /** 战斗id */
-    var id: Long = 0
+    /** 战斗记录 */
+    var battleRecorder: BattleRecorder = EmptyBattleRecorder()
+
+    //====================================== 战斗信息 ======================================
 
     /** 战斗阵营 */
     val campMap: MutableMap<Int, BattleCamp> = mutableMapOf()
+
+    /** 战斗结果 */
+    var result: Int = BattleResult.TIE.value
 
     /**
      * 初始化
      */
     fun init() {
+        if (battleArgs.report) {
+            battleRecorder = DefaultTurnBasedBattleRecorder()
+        }
     }
 
     /**
@@ -37,6 +46,6 @@ open class BattleEnv(
      * 创建战报
      */
     fun createReport(): BattleReport? {
-        return battleRecorder?.createReport()
+        return battleRecorder.createReport()
     }
 }

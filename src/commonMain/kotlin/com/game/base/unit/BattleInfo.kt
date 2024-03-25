@@ -11,7 +11,26 @@ abstract class BattleInfo {
     val ext: MutableMap<BattleArgsExt, Any> = mutableMapOf()
 
     /**
-     * 生成战斗单元
+     * 创建战斗单元
      */
-    abstract fun createBattleUnit(): BattleUnit
+    fun createBattleUnit(): BattleUnit {
+        val battleUnit = createUnit()
+        initUnit(battleUnit)
+        return battleUnit
+    }
+
+    /**
+     * 创建战斗单元
+     */
+    abstract fun createUnit(): BattleUnit
+
+    /**
+     * 初始化战斗单元
+     */
+    fun initUnit(battleUnit: BattleUnit) {
+        // 拓展参数
+        this.ext.forEach {
+            it.key.handler.handleExt(battleUnit, it.value)
+        }
+    }
 }
