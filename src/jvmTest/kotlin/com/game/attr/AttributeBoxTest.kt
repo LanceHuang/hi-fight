@@ -9,9 +9,9 @@ class AttributeBoxTest {
     @Test
     fun test() {
         val attributeBox = BattleAttributeBox()
-        attributeBox.update(Module(ModuleType.BASE), mutableMapOf(AttributeType.ATK to 10))
+        attributeBox.update(Module(ModuleType.BASE), mutableMapOf(AttributeType.ATK to 10, AttributeType.ATK_INCREASE to 6000))
         attributeBox.update(Module(ModuleType.BUFF), mutableMapOf(AttributeType.MAX_HP to 100))
-        attributeBox.compute()
+        attributeBox.calculate()
 
         // 输出
         attributeBox.finalMap.forEach {

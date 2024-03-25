@@ -1,5 +1,6 @@
 package com.game.attr
 
+import com.game.attr.op.AttributeRegistry
 import com.game.common.Module
 
 /**
@@ -11,7 +12,7 @@ open class AttributeBox<T> {
     var owner: T? = null
 
     /** 模块汇总 */
-    var moduleMap: MutableMap<Module, Map<AttributeType, Long>> = mutableMapOf()
+    var moduleMap: MutableMap<Module, Map<AttributeType, Long>> = mutableMapOf() // todo 并发安全
 
     /** 原始属性 */
     var baseMap: Map<AttributeType, Long> = mutableMapOf()
@@ -29,10 +30,13 @@ open class AttributeBox<T> {
     /**
      * 更新模块
      */
-    fun updateAndCompute(module: Module, attrMap: Map<AttributeType, Long>) {
-        this.moduleMap[module] = attrMap
+    fun updateAndCalc(module: Module, attrMap: Map<AttributeType, Long>) {
+        if (this.moduleMap[module] == null && attrMap.isEmpty()) {
+            return
+        }
 
-        compute()
+        this.moduleMap[module] = attrMap
+        calculate()
     }
 
     /**
@@ -45,32 +49,42 @@ open class AttributeBox<T> {
     /**
      * 删除模块
      */
-    fun removeAndCompute(module: Module) {
-        this.moduleMap.remove(module)
+    fun removeAndCalc(module: Module) {
+        if (this.moduleMap[module] != null) {
+            return
+        }
 
-        compute()
+        this.moduleMap.remove(module)
+        calculate()
     }
 
     /**
      * 计算属性
      */
-    fun compute() {
-        val collectResult = collect()
-        this.baseMap = collectResult
-        this.finalMap = collectResult
+    fun calculate() {
+        // 收集属性
+        val collectMap = collect()
+
+        // 分层计算
+        val computeMap: MutableMap<AttributeType, Long> = mutableMapOf()
+        AttributeRegistry.attributeOps.forEach {
+            val result = it.value.calculate(collectMap, computeMap)
+            computeMap[it.key] = result
+        }
+
+        // 更新
+        this.baseMap = collectMap
+        this.finalMap = computeMap
     }
 
     /**
      * 收集属性
      */
     fun collect(): Map<AttributeType, Long> {
-        val result: Map<AttributeType, Long> = mutableMapOf()
-        this.moduleMap.forEach { entry ->
-            entry.value.forEach { innerEntry ->
-                // todo 如果不存在的话，需要添加
-                result[innerEntry.key]?.plus(innerEntry.value)
-            }
+        val attributeMap: MutableMap<AttributeType, Long> = mutableMapOf()
+        this.moduleMap.values.forEach {
+            attributeMap += it
         }
-        return result
+        return attributeMap
     }
 }
