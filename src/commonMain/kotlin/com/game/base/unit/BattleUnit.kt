@@ -8,7 +8,10 @@ import com.game.skill.BattleSkillBox
 /**
  * 战斗单元
  */
-abstract class BattleUnit {
+abstract class BattleUnit(
+    /** 战斗信息 */
+    val battleInfo: BattleInfo
+) {
 
     //====================== 基础信息 =======================
 
@@ -45,4 +48,9 @@ abstract class BattleUnit {
         // todo 有时，血量清零还可以复活
         return hp <= 0L
     }
+
+    /**
+     * 获取名称
+     */
+    abstract fun getName(): String
 }

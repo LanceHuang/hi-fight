@@ -1,4 +1,4 @@
-package com.game.buff
+package com.game.base
 
 /**
  * 战斗配置
@@ -21,6 +21,16 @@ class BattleConfigs {
         /** 最大血量万分比 */
         const val MAX_HP_PERCENT_DOUBLE: Double = 10000.0
 
+        /** 是否需要记录日志 */
+        var NEED_LOG: Boolean = false
+
+        //===================================== 组件 ===============================
+        /** id生成 */
+        var ID_GEN: BattleId? = null
+
+        /** 时间获取 */
+        var TIME_GEN: BattleTime? = null
+
         //===================================== 回合制 ===============================
         /** 默认战斗回合数 */
         const val DEFAULT_RING: Int = 15
@@ -34,5 +44,7 @@ class BattleConfigs {
 
         /** 默认战斗帧数 */
         const val DEFAULT_FRAME_COUNT: Long = DEFAULT_TIME / DEFAULT_FRAME_TIME
+
+        //===================================== 函数 ===============================
     }
 }

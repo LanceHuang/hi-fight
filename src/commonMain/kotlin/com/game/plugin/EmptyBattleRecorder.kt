@@ -1,4 +1,4 @@
-package com.game.report
+package com.game.plugin
 
 /**
  * 不做记录

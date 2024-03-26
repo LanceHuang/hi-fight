@@ -1,6 +1,8 @@
 package com.game.handler
 
 import com.game.base.BattleArgs
+import com.game.base.BattleCamp
+import com.game.base.BattleConfigs
 import com.game.base.BattleEnv
 
 /**
@@ -10,33 +12,12 @@ open class DefaultTurnBasedBattleHandler : BattleHandler {
 
     override fun createBattle(args: BattleArgs): BattleEnv {
         val env = DefaultTurnBasedBattleEnv(args)
-        // todo 战斗时长
-        env.battleArgs = args
         env.init()
         return env
     }
 
     override fun initBattle(env: BattleEnv) {
-        initBattleCamp(env)
-        initBattleExt(env)
-    }
-
-    /**
-     * 初始化阵营
-     */
-    private fun initBattleCamp(env: BattleEnv) {
-        env.battleArgs.campMap.forEach {
-            env.campMap[it.key] = it.value.createCamp()
-        }
-    }
-
-    /**
-     * 初始化拓展参数
-     */
-    private fun initBattleExt(env: BattleEnv) {
-        env.battleArgs.ext.forEach {
-            it.key.handler.handleExt(env, it.value)
-        }
+        env.battleLogger?.logInit()
     }
 
     override fun startBattle(env: BattleEnv) {
@@ -88,7 +69,8 @@ open class DefaultTurnBasedBattleHandler : BattleHandler {
     }
 
     override fun settleBattle(env: BattleEnv) {
-        TODO("Not yet implemented")
+        env.settleTime = BattleConfigs.TIME_GEN?.getTime() ?: 0
+        env.battleLogger?.logSettle()
     }
 
     /**

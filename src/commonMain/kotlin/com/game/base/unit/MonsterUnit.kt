@@ -1,4 +1,14 @@
 package com.game.base.unit
 
-class MonsterUnit : BattleUnit() {
+/**
+ * 怪物单元
+ */
+class MonsterUnit(
+    /** 怪物信息 */
+    val monsterInfo: MonsterInfo
+) : BattleUnit(monsterInfo) {
+
+    override fun getName(): String {
+        return monsterInfo.monsterName
+    }
 }

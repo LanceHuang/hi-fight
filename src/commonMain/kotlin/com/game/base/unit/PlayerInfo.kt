@@ -5,10 +5,12 @@ package com.game.base.unit
  */
 class PlayerInfo(
     /** 玩家id */
-    val playerId: Long
+    val playerId: Long,
+    /** 玩家名 */
+    val playerName: String = ""
 ) : BattleInfo() {
 
     override fun createUnit(): BattleUnit {
-        return FightUnit(this)
+        return PlayerUnit(this)
     }
 }

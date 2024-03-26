@@ -13,30 +13,23 @@ import kotlin.random.Random
  * 战斗参数
  */
 open class BattleArgs(
-    /** 战斗id */
-    var id: Long,
-
     /** 战斗类型 */
     var type: Int,
 
     /** 战场id */
     var mapId: Int,
-
+) {
     /** 随机种子 */
-    var seed: Int = Random.nextInt(1, 100),
+    var seed: Int = Random.nextInt(1, 100)
 
     /** 创建时间 */
-    var createTime: Long,
-
-    /** 记录战报 */
-    var report: Boolean = true,
-) {
+    var createTime: Long = BattleConfigs.TIME_GEN?.getTime() ?: 0
 
     /** 战斗阵营 */
-    val campMap: MutableMap<Int, BattleCampInfo> = mutableMapOf(
-        BattleCampType.ATTACKER.id to BattleCampInfo(),
-        BattleCampType.DEFENDER.id to BattleCampInfo(),
-    )
+    val campMap: MutableMap<Int, BattleCampInfo> = mutableMapOf()
+
+    /** 拓展参数 */
+    val ext: MutableMap<BattleArgsExt, Any> = mutableMapOf()
 
     /** 战斗类型 */
     var battleType: BattleType = BattleType.TURN_BASED
@@ -50,13 +43,16 @@ open class BattleArgs(
     /** 结算策略 */
     var settleStrategy: BattleSettleStrategyType = BattleSettleStrategyType.DEFENDER_FIRST
 
-    /** 拓展参数 */
-    val ext: MutableMap<BattleArgsExt, Any> = mutableMapOf()
+    /** 记录战报 */
+    var report: Boolean = true
 
     /**
      * 添加战斗信息
      */
     fun addFight(campId: Int, posId: Int, battleInfo: BattleInfo) {
+        if (this.campMap[campId] == null) {
+            this.campMap[campId] = BattleCampInfo(campId)
+        }
         this.campMap[campId]?.addFight(posId, battleInfo)
     }
 }

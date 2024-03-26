@@ -1,4 +1,6 @@
-package com.game.report
+package com.game.plugin
+
+import com.game.report.TurnBasedBattleReport
 
 /**
  * 默认战斗记录

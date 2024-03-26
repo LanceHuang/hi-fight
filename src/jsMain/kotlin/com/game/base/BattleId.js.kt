@@ -1,7 +1,7 @@
-package com.game.id
+package com.game.base
 
 /**
- * 战斗id
+ * id生成
  */
 actual class BattleId {
     /**
@@ -10,4 +10,5 @@ actual class BattleId {
     actual fun nextId(): Long {
         TODO("Not yet implemented")
     }
+
 }

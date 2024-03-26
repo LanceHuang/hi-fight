@@ -1,5 +1,6 @@
 package com.game.base
 
+import com.game.base.unit.BattleCampInfo
 import com.game.base.unit.BattleUnit
 
 /**
@@ -42,5 +43,24 @@ class BattleCamp {
             if (!it.isDead()) return false
         }
         return true
+    }
+
+    companion object Instance {
+
+        /**
+         * 创建阵营
+         */
+        fun valueOf(battleCampInfo: BattleCampInfo): BattleCamp {
+            val battleCamp = BattleCamp()
+            battleCampInfo.baseMap.forEach {
+                battleCamp.addStaticUnit(it.key, it.value.createBattleUnit())
+            }
+
+            // 拓展参数
+            battleCampInfo.ext.forEach {
+                it.key.handler.handleExt(battleCamp, it.value)
+            }
+            return battleCamp
+        }
     }
 }

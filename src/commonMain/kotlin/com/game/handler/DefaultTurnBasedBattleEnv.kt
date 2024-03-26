@@ -2,7 +2,7 @@ package com.game.handler
 
 import com.game.base.BattleArgs
 import com.game.base.BattleEnv
-import com.game.buff.BattleConfigs
+import com.game.base.BattleConfigs
 
 /**
  * 回合制战斗环境
@@ -12,6 +12,7 @@ class DefaultTurnBasedBattleEnv(
     battleArgs: BattleArgs,
 ) : BattleEnv(battleArgs) {
 
+    // todo 初始化
     /** 最大回合数 */
     var maxRing: Int = BattleConfigs.DEFAULT_RING
 
@@ -20,4 +21,18 @@ class DefaultTurnBasedBattleEnv(
 
     /** 行动数 */
     var turn: Int = 1
+
+    /**
+     * 增加回合数
+     */
+    fun increaseRing() {
+        this.ring++
+    }
+
+    /**
+     * 增加行动数
+     */
+    fun increaseTurn() {
+        this.turn++
+    }
 }

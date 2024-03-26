@@ -1,37 +1,99 @@
 package com.game.base
 
-import com.game.report.BattleRecorder
+import com.game.plugin.*
 import com.game.report.BattleReport
-import com.game.report.DefaultTurnBasedBattleRecorder
-import com.game.report.EmptyBattleRecorder
 
 /**
  * 战斗环境
  */
 open class BattleEnv(
     /** 战斗参数 */
-    var battleArgs: BattleArgs,
+    val battleArgs: BattleArgs,
 ) {
 
-    //====================================== 基础信息 ======================================
-
+    //====================================== 插件 ======================================
     /** 战斗记录 */
-    var battleRecorder: BattleRecorder = EmptyBattleRecorder()
+    var battleRecorder: BattleRecorder? = null
 
-    //====================================== 战斗信息 ======================================
+    /** 战斗日志 */
+    var battleLogger: BattleLogger? = null
 
-    /** 战斗阵营 */
-    val campMap: MutableMap<Int, BattleCamp> = mutableMapOf()
+    /** 战斗统计 */
+    var battleStat: BattleStat? = null
+
+    //====================================== 基础信息 ======================================
+    /** 战斗id */
+    var id: Long = 0L
 
     /** 战斗结果 */
     var result: Int = BattleResult.TIE.value
+
+    /** 创建时间 */
+    var createTime: Long = 0L
+
+    /** 结算时间 */
+    var settleTime: Long = 0L
+
+    //====================================== 战斗信息 ======================================
+    /** 战斗阵营 */
+    val campMap: MutableMap<Int, BattleCamp> = mutableMapOf()
 
     /**
      * 初始化
      */
     fun init() {
-        if (battleArgs.report) {
-            battleRecorder = DefaultTurnBasedBattleRecorder()
+        initBattlePlugins()
+        initBattleBase()
+        initBattleCamp()
+        initBattleExt()
+    }
+
+    /**
+     * 初始化插件
+     */
+    private fun initBattlePlugins() {
+        // 战斗记录
+        if (this.battleArgs.report) {
+            this.battleRecorder = DefaultTurnBasedBattleRecorder()
+        } else {
+            this.battleRecorder = EmptyBattleRecorder()
+        }
+
+        // 战斗日志
+        if (BattleConfigs.NEED_LOG) {
+            this.battleLogger = ConsoleBattleLogger(this)
+        } else {
+            this.battleLogger = EmptyBattleLogger()
+        }
+
+        // 战斗统计
+        this.battleStat = DefaultBattleStat()
+    }
+
+    /**
+     * 初始化基础
+     */
+    private fun initBattleBase() {
+        this.id = BattleConfigs.ID_GEN?.nextId() ?: 0
+        this.createTime = BattleConfigs.TIME_GEN?.getTime() ?: 0
+    }
+
+    /**
+     * 初始化阵营
+     */
+    private fun initBattleCamp() {
+        this.battleArgs.campMap.forEach {
+            this.campMap[it.key] = BattleCamp.valueOf(it.value)
+        }
+    }
+
+
+    /**
+     * 初始化拓展参数
+     */
+    private fun initBattleExt() {
+        this.battleArgs.ext.forEach {
+            it.key.handler.handleExt(this, it.value)
         }
     }
 
@@ -46,6 +108,6 @@ open class BattleEnv(
      * 创建战报
      */
     fun createReport(): BattleReport? {
-        return battleRecorder.createReport()
+        return battleRecorder?.createReport()
     }
 }
