@@ -11,7 +11,6 @@ class BattleSkillBox : SkillBox<BattleUnit>() {
      * 初始化
      */
     fun init(snapshot: SkillSnapshot?) {
-        TODO("Not yet implemented")
     }
 
     companion object Instance {

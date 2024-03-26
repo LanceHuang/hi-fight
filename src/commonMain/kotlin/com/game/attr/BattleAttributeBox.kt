@@ -11,7 +11,6 @@ class BattleAttributeBox : AttributeBox<BattleUnit>() {
      * 初始化
      */
     fun init(snapshot: AttributeSnapshot?) {
-        TODO("Not yet implemented")
     }
 
     companion object Instance {

@@ -23,13 +23,13 @@ open class BattleEnv(
 
     //====================================== 基础信息 ======================================
     /** 战斗id */
-    var id: Long = 0L
+    val id: Long = BattleConfigs.ID_GEN?.nextId() ?: 0
 
     /** 战斗结果 */
     var result: Int = BattleResult.TIE.value
 
     /** 创建时间 */
-    var createTime: Long = 0L
+    val createTime: Long = BattleConfigs.TIME_GEN?.getTime() ?: 0
 
     /** 结算时间 */
     var settleTime: Long = 0L
@@ -41,9 +41,8 @@ open class BattleEnv(
     /**
      * 初始化
      */
-    fun init() {
+    open fun init() {
         initBattlePlugins()
-        initBattleBase()
         initBattleCamp()
         initBattleExt()
     }
@@ -61,21 +60,13 @@ open class BattleEnv(
 
         // 战斗日志
         if (BattleConfigs.NEED_LOG) {
-            this.battleLogger = com.game.battle.plugin.ConsoleBattleLogger(this)
+            this.battleLogger = ConsoleBattleLogger(this)
         } else {
             this.battleLogger = EmptyBattleLogger()
         }
 
         // 战斗统计
         this.battleStat = DefaultBattleStat()
-    }
-
-    /**
-     * 初始化基础
-     */
-    private fun initBattleBase() {
-        this.id = BattleConfigs.ID_GEN?.nextId() ?: 0
-        this.createTime = BattleConfigs.TIME_GEN?.getTime() ?: 0
     }
 
     /**

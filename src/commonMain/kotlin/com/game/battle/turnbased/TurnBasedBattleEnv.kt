@@ -1,4 +1,4 @@
-package com.game.battle.handler
+package com.game.battle.turnbased
 
 import com.game.battle.BattleArgs
 import com.game.battle.BattleEnv
@@ -7,14 +7,10 @@ import com.game.battle.BattleConfigs
 /**
  * 回合制战斗环境
  */
-class DefaultTurnBasedBattleEnv(
+class TurnBasedBattleEnv(
     /** 战斗参数 */
     battleArgs: BattleArgs,
 ) : BattleEnv(battleArgs) {
-
-    // todo 初始化
-    /** 最大回合数 */
-    var maxRing: Int = BattleConfigs.DEFAULT_RING
 
     /** 回合数 */
     var ring: Int = 1

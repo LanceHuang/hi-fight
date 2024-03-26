@@ -14,16 +14,15 @@ import kotlin.random.Random
  */
 open class BattleArgs(
     /** 战斗类型 */
-    var type: Int,
-
+    val type: Int,
     /** 战场id */
-    var mapId: Int,
+    val mapId: Int,
 ) {
     /** 随机种子 */
-    var seed: Int = Random.nextInt(1, 100)
+    val seed: Int = Random.nextInt(1, 100)
 
     /** 创建时间 */
-    var createTime: Long = BattleConfigs.TIME_GEN?.getTime() ?: 0
+    val createTime: Long = BattleConfigs.TIME_GEN?.getTime() ?: 0
 
     /** 战斗阵营 */
     val campMap: MutableMap<Int, BattleCampInfo> = mutableMapOf()
@@ -45,14 +44,4 @@ open class BattleArgs(
 
     /** 记录战报 */
     var report: Boolean = true
-
-    /**
-     * 添加战斗信息
-     */
-    fun addFight(campId: Int, posId: Int, battleInfo: BattleInfo) {
-        if (this.campMap[campId] == null) {
-            this.campMap[campId] = BattleCampInfo(campId)
-        }
-        this.campMap[campId]?.addFight(posId, battleInfo)
-    }
 }
