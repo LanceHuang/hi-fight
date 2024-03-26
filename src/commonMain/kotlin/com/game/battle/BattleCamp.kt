@@ -1,6 +1,5 @@
 package com.game.battle
 
-import com.game.battle.unit.BattleCampInfo
 import com.game.battle.unit.BattleUnit
 
 /**
@@ -16,9 +15,6 @@ class BattleCamp(
     /** 动态战斗单元 */
     val dynamicMap: MutableMap<Int, BattleUnit> = mutableMapOf()
 
-//    /** 静态战斗单元站位 */
-//    var staticIndex: Int = 1
-
     /** 动态战斗单元站位 */
     var dynamicIndex: Int = 100
 
@@ -27,6 +23,11 @@ class BattleCamp(
      */
     fun addStaticUnit(staticIndex: Int, unit: BattleUnit) {
         staticMap[staticIndex] = unit
+
+        // 初始化
+        unit.campId = campId
+        unit.posId = staticIndex
+        unit.id = createUnitId(unit)
     }
 
     /**
@@ -35,6 +36,18 @@ class BattleCamp(
     fun addDynamicUnit(unit: BattleUnit) {
         dynamicMap[dynamicIndex] = unit
         dynamicIndex++
+
+        // 初始化
+        unit.campId = campId
+        unit.posId = dynamicIndex
+        unit.id = createUnitId(unit)
+    }
+
+    /**
+     * 生成单元id
+     */
+    private fun createUnitId(unit: BattleUnit): Long {
+        return unit.campId * 10000L + unit.posId
     }
 
     /**
@@ -45,28 +58,5 @@ class BattleCamp(
             if (!it.isDead()) return false
         }
         return true
-    }
-
-    companion object Instance {
-
-        /**
-         * 创建阵营
-         */
-        fun create(battleCampInfo: BattleCampInfo): BattleCamp {
-            val battleCamp = BattleCamp(battleCampInfo.campId)
-            battleCampInfo.baseMap.forEach {
-                val battleUnit = it.value.createBattleUnit()
-                battleUnit.campId = battleCampInfo.campId
-                battleUnit.posId = it.key
-                battleUnit.id = battleUnit.campId * 1000L + battleUnit.posId
-                battleCamp.addStaticUnit(it.key, battleUnit)
-            }
-
-            // 拓展参数
-            battleCampInfo.ext.forEach {
-                it.key.handler.handleExt(battleCamp, it.value)
-            }
-            return battleCamp
-        }
     }
 }

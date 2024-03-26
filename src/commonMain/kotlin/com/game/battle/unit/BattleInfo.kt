@@ -19,37 +19,17 @@ abstract class BattleInfo {
     var skillSnapshot: SkillSnapshot? = null
 
     /** 拓展参数 */
-    val ext: MutableMap<BattleArgsExt, Any> = mutableMapOf()
+    val extMap: MutableMap<BattleArgsExt, Any> = mutableMapOf()
 
     /**
-     * 创建战斗单元
+     * 添加拓展参数
      */
-    fun createBattleUnit(): BattleUnit {
-        val battleUnit = createUnit()
-        initUnit(battleUnit)
-        return battleUnit
+    fun addExt(ext: BattleArgsExt, value: Any) {
+        this.extMap[ext] = value
     }
 
     /**
      * 创建战斗单元
      */
-    abstract fun createUnit(): BattleUnit
-
-    /**
-     * 初始化战斗单元
-     */
-    fun initUnit(battleUnit: BattleUnit) {
-        // 容器
-        // todo id
-        battleUnit.attrBox = BattleAttributeBox.create(battleUnit)
-        battleUnit.attrBox?.init(this.attrSnapshot)
-        battleUnit.skillBox = BattleSkillBox.create(battleUnit)
-        battleUnit.skillBox?.init(this.skillSnapshot)
-        battleUnit.buffBox = BattleBuffBox.create(battleUnit)
-
-        // 拓展参数
-        this.ext.forEach {
-            it.key.handler.handleExt(battleUnit, it.value)
-        }
-    }
+    abstract fun createBattleUnit(): BattleUnit
 }

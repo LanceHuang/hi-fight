@@ -8,6 +8,10 @@ class MonsterUnit(
     val monsterInfo: MonsterInfo
 ) : BattleUnit(monsterInfo) {
 
+    override fun getBattleUnitType(): BattleUnitType {
+        return BattleUnitType.MONSTER
+    }
+
     override fun getName(): String {
         return monsterInfo.monsterName
     }

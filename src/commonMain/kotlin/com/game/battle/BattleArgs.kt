@@ -22,13 +22,13 @@ open class BattleArgs(
     val seed: Int = Random.nextInt(1, 100)
 
     /** 创建时间 */
-    val createTime: Long = BattleConfigs.TIME_GEN?.getTime() ?: 0
+    val createTime: Long = BattleConfigs.getTime()
 
     /** 战斗阵营 */
     val campMap: MutableMap<Int, BattleCampInfo> = mutableMapOf()
 
     /** 拓展参数 */
-    val ext: MutableMap<BattleArgsExt, Any> = mutableMapOf()
+    val extMap: MutableMap<BattleArgsExt, Any> = mutableMapOf()
 
     /** 战斗类型 */
     var battleType: BattleType = BattleType.TURN_BASED
@@ -44,4 +44,28 @@ open class BattleArgs(
 
     /** 记录战报 */
     var report: Boolean = true
+
+    /**
+     * 添加战斗信息
+     */
+    fun addBattleInfo(campId: Int, posId: Int, battleInfo: BattleInfo) {
+        val campInfo = this.campMap.getOrPut(campId) { BattleCampInfo() }
+        campInfo.addBattleInfo(posId, battleInfo)
+    }
+
+    /**
+     * 添加战斗信息
+     */
+    fun addBattleInfo(campId: Int, infoMap: Map<Int, BattleInfo>) {
+        for (entry in infoMap) {
+            addBattleInfo(campId, entry.key, entry.value)
+        }
+    }
+
+    /**
+     * 添加拓展参数
+     */
+    fun addExt(ext: BattleArgsExt, value: Any) {
+        this.extMap[ext] = value
+    }
 }

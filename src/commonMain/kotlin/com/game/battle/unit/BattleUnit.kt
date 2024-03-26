@@ -41,10 +41,20 @@ abstract class BattleUnit(
     var hp: Long = 0L
 
     /**
-     * 初始化
+     * 初始化战斗单元
      */
-    fun prepare() {
-        TODO("Not yet implemented")
+    fun initUnit() {
+        // 容器
+        this.attrBox = BattleAttributeBox.create(this)
+        this.attrBox?.init(this.battleInfo.attrSnapshot)
+        this.skillBox = BattleSkillBox.create(this)
+        this.skillBox?.init(this.battleInfo.skillSnapshot)
+        this.buffBox = BattleBuffBox.create(this)
+
+        // 拓展参数
+        for (entry in this.battleInfo.extMap) {
+            entry.key.handler.handleExt(this, entry.value)
+        }
     }
 
     /**
@@ -66,4 +76,9 @@ abstract class BattleUnit(
      * 获取名称
      */
     abstract fun getName(): String
+
+    /**
+     * 获取单元类型
+     */
+    abstract fun getBattleUnitType(): BattleUnitType
 }

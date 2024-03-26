@@ -46,5 +46,15 @@ class BattleConfigs {
         const val DEFAULT_FRAME_COUNT: Long = DEFAULT_TIME / DEFAULT_FRAME_TIME
 
         //===================================== 函数 ===============================
+
+        /** 生成id */
+        fun nextId(): Long {
+            return ID_GEN?.nextId() ?: 0
+        }
+
+        /** 获取时间 */
+        fun getTime(): Long {
+            return TIME_GEN?.getTime() ?: 0
+        }
     }
 }

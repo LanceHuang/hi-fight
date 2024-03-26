@@ -7,7 +7,6 @@ class MonsterInfo(
     /** 怪物名 */
     val monsterName: String = ""
 ) : BattleInfo() {
-    override fun createUnit(): BattleUnit {
-        return MonsterUnit(this)
-    }
+
+    override fun createBattleUnit(): BattleUnit = MonsterUnit(this)
 }

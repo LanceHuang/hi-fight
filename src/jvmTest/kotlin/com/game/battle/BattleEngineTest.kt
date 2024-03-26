@@ -1,8 +1,6 @@
 package com.game.battle
 
 import com.game.battle.turnbased.TurnBasedBattleArgs
-import com.game.battle.unit.BattleCampInfo
-import com.game.battle.unit.BattleInfo
 import com.game.battle.unit.PlayerInfo
 import kotlin.test.Test
 
@@ -15,11 +13,21 @@ class BattleEngineTest {
         BattleConfigs.TIME_GEN = BattleTime()
         BattleConfigs.NEED_LOG = true
 
+        // 添加参战人员
+        var playerId: Long = 1
+        val attackerMap: MutableMap<Int, PlayerInfo> = mutableMapOf()
+        val defenderMap: MutableMap<Int, PlayerInfo> = mutableMapOf()
+        for (i in 1..10) {
+            attackerMap[i] = PlayerInfo(playerId++, "老六$i")
+            defenderMap[i] = PlayerInfo(playerId++, "老王$i")
+        }
+
         // 创建参数
-        var playerIdGen: Long = 1
         val battleArgs = TurnBasedBattleArgs(type = 10, mapId = 555)
-        battleArgs.addFight(BattleCampType.ATTACKER, 1, PlayerInfo(playerIdGen++, "老六"))
-        battleArgs.addFight(BattleCampType.DEFENDER, 1, PlayerInfo(playerIdGen++, "老王"))
+        battleArgs.addBattleInfo(BattleCampType.ATTACKER.id, attackerMap)
+        battleArgs.addBattleInfo(BattleCampType.DEFENDER.id, defenderMap)
+//        battleArgs.campMap[BattleCampType.ATTACKER.id]?.baseMap[1]?.addExt(BattleArgsExt.HP_PERCENT, 5000)
+//        battleArgs.campMap[BattleCampType.DEFENDER.id]?.baseMap[1]?.addExt(BattleArgsExt.HP_PERCENT, 8000)
 
         // 计算战斗
         val battleEnv = BattleEngine.performBattle(battleArgs)
@@ -29,12 +37,4 @@ class BattleEngineTest {
         val battleReport = battleEnv.createReport()
         // todo
     }
-}
-
-/**
- * 添加战斗信息（业务相关的接口，通用战斗力可能不止攻守方）
- */
-fun BattleArgs.addFight(campType: BattleCampType, posId: Int, battleInfo: BattleInfo) {
-    val campInfo = campMap.getOrPut(campType.id) { BattleCampInfo(campType.id) }
-    campInfo.addFight(posId, battleInfo)
 }

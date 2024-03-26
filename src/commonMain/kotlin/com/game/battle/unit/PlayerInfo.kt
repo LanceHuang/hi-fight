@@ -10,7 +10,5 @@ class PlayerInfo(
     val playerName: String = ""
 ) : BattleInfo() {
 
-    override fun createUnit(): BattleUnit {
-        return PlayerUnit(this)
-    }
+    override fun createBattleUnit(): BattleUnit = PlayerUnit(this)
 }

@@ -23,13 +23,13 @@ open class BattleEnv(
 
     //====================================== 基础信息 ======================================
     /** 战斗id */
-    val id: Long = BattleConfigs.ID_GEN?.nextId() ?: 0
+    val id: Long = BattleConfigs.nextId()
 
     /** 战斗结果 */
     var result: Int = BattleResult.TIE.value
 
     /** 创建时间 */
-    val createTime: Long = BattleConfigs.TIME_GEN?.getTime() ?: 0
+    val createTime: Long = BattleConfigs.getTime()
 
     /** 结算时间 */
     var settleTime: Long = 0L
@@ -73,17 +73,28 @@ open class BattleEnv(
      * 初始化阵营
      */
     private fun initBattleCamp() {
-        this.battleArgs.campMap.forEach {
-            this.campMap[it.key] = BattleCamp.create(it.value)
+        for (entry in this.battleArgs.campMap) {
+            // 初始化
+            val battleCamp = BattleCamp(entry.key)
+            for (innerEntry in entry.value.baseMap) {
+                val battleUnit = innerEntry.value.createBattleUnit()
+                battleUnit.initUnit()
+                battleCamp.addStaticUnit(innerEntry.key, battleUnit)
+            }
+
+            // 拓展参数
+            for (innerEntry in entry.value.extMap) {
+                innerEntry.key.handler.handleExt(battleCamp, innerEntry.value)
+            }
+            this.campMap[entry.key] = battleCamp
         }
     }
-
 
     /**
      * 初始化拓展参数
      */
     private fun initBattleExt() {
-        this.battleArgs.ext.forEach {
+        this.battleArgs.extMap.forEach {
             it.key.handler.handleExt(this, it.value)
         }
     }

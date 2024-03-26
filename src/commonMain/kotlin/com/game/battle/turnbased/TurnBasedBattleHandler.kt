@@ -69,7 +69,7 @@ open class TurnBasedBattleHandler : BattleHandler {
     }
 
     override fun settleBattle(env: BattleEnv) {
-        env.settleTime = BattleConfigs.TIME_GEN?.getTime() ?: 0
+        env.settleTime = BattleConfigs.getTime()
         env.battleLogger?.logSettle()
     }
 

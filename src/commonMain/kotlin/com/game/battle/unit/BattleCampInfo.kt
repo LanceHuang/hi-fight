@@ -5,20 +5,25 @@ import com.game.battle.ext.BattleArgsExt
 /**
  * 阵营信息
  */
-class BattleCampInfo(
-    /** 阵营id */
-    val campId: Int
-) {
+class BattleCampInfo {
+
     /** 战斗信息 */
     val baseMap: MutableMap<Int, BattleInfo> = mutableMapOf()
 
     /** 拓展参数 */
-    val ext: MutableMap<BattleArgsExt, Any> = mutableMapOf()
+    val extMap: MutableMap<BattleArgsExt, Any> = mutableMapOf()
 
     /**
      * 添加战斗信息
      */
-    fun addFight(posId: Int, battleInfo: BattleInfo) {
+    fun addBattleInfo(posId: Int, battleInfo: BattleInfo) {
         this.baseMap[posId] = battleInfo
+    }
+
+    /**
+     * 添加拓展参数
+     */
+    fun addExt(ext: BattleArgsExt, value: Any) {
+        this.extMap[ext] = value
     }
 }
