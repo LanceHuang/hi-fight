@@ -1,15 +1,15 @@
 package com.game.battle.handler
 
-import com.game.battle.base.BattleArgs
-import com.game.base.BattleEnv
-import com.game.base.BattleConfigs
+import com.game.battle.BattleArgs
+import com.game.battle.BattleEnv
+import com.game.battle.BattleConfigs
 
 /**
  * 回合制战斗环境
  */
 class DefaultTurnBasedBattleEnv(
     /** 战斗参数 */
-    battleArgs: com.game.battle.base.BattleArgs,
+    battleArgs: BattleArgs,
 ) : BattleEnv(battleArgs) {
 
     // todo 初始化

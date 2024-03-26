@@ -1,12 +1,12 @@
 package com.game.battle
 
-import com.game.base.ext.BattleArgsExt
-import com.game.base.unit.BattleCampInfo
-import com.game.base.unit.BattleInfo
+import com.game.battle.ext.BattleArgsExt
+import com.game.battle.unit.BattleCampInfo
 import com.game.battle.handler.BattleType
-import com.game.strategy.BattleActionStrategyType
-import com.game.strategy.BattleEndingStrategyType
-import com.game.strategy.BattleSettleStrategyType
+import com.game.battle.strategy.BattleActionStrategyType
+import com.game.battle.strategy.BattleEndingStrategyType
+import com.game.battle.strategy.BattleSettleStrategyType
+import com.game.battle.unit.BattleInfo
 import kotlin.random.Random
 
 /**
@@ -23,7 +23,7 @@ open class BattleArgs(
     var seed: Int = Random.nextInt(1, 100)
 
     /** 创建时间 */
-    var createTime: Long = com.game.battle.base.BattleConfigs.Instance.TIME_GEN?.getTime() ?: 0
+    var createTime: Long = BattleConfigs.TIME_GEN?.getTime() ?: 0
 
     /** 战斗阵营 */
     val campMap: MutableMap<Int, BattleCampInfo> = mutableMapOf()
@@ -32,7 +32,7 @@ open class BattleArgs(
     val ext: MutableMap<BattleArgsExt, Any> = mutableMapOf()
 
     /** 战斗类型 */
-    var battleType: com.game.battle.handler.BattleType = com.game.battle.handler.BattleType.TURN_BASED
+    var battleType: BattleType = BattleType.TURN_BASED
 
     /** 行动策略 */
     var actionStrategy: BattleActionStrategyType = BattleActionStrategyType.SPEED_FIRST

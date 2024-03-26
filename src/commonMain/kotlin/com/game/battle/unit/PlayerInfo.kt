@@ -8,7 +8,7 @@ class PlayerInfo(
     val playerId: Long,
     /** 玩家名 */
     val playerName: String = ""
-) : com.game.battle.unit.BattleInfo() {
+) : BattleInfo() {
 
     override fun createUnit(): BattleUnit {
         return PlayerUnit(this)

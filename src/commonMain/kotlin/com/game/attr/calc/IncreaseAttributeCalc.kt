@@ -1,7 +1,7 @@
 package com.game.attr.calc
 
 import com.game.attr.AttributeType
-import com.game.base.BattleConfigs
+import com.game.battle.BattleConfigs
 import kotlin.math.roundToLong
 
 /**

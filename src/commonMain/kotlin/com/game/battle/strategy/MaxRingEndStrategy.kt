@@ -1,6 +1,6 @@
 package com.game.battle.strategy
 
-import com.game.base.BattleEnv
+import com.game.battle.BattleEnv
 import com.game.battle.handler.DefaultTurnBasedBattleEnv
 
 class MaxRingEndStrategy : BattleEndStrategy() {
@@ -11,7 +11,7 @@ class MaxRingEndStrategy : BattleEndStrategy() {
         }
 
         // 判断回合数
-        val turnEnv: com.game.battle.handler.DefaultTurnBasedBattleEnv = env as com.game.battle.handler.DefaultTurnBasedBattleEnv
+        val turnEnv: DefaultTurnBasedBattleEnv = env as com.game.battle.handler.DefaultTurnBasedBattleEnv
         return turnEnv.ring >= turnEnv.maxRing
     }
 }

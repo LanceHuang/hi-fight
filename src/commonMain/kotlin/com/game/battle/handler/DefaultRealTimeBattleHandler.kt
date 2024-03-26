@@ -1,14 +1,14 @@
 package com.game.battle.handler
 
-import com.game.battle.base.BattleArgs
-import com.game.base.BattleEnv
+import com.game.battle.BattleArgs
+import com.game.battle.BattleEnv
 
 /**
  * 即时制战斗
  */
-open class DefaultRealTimeBattleHandler : com.game.battle.handler.BattleHandler {
+open class DefaultRealTimeBattleHandler : BattleHandler {
 
-    override fun createBattle(args: com.game.battle.base.BattleArgs): BattleEnv {
+    override fun createBattle(args: BattleArgs): BattleEnv {
         TODO("Not yet implemented")
     }
 

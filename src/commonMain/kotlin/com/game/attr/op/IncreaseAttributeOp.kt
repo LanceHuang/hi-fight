@@ -1,6 +1,6 @@
 package com.game.attr.op
 
-import com.game.base.BattleConfigs
+import com.game.battle.BattleConfigs
 import kotlin.math.roundToLong
 
 /**

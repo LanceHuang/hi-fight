@@ -1,7 +1,7 @@
 package com.game.battle
 
-import com.game.base.unit.BattleCampInfo
-import com.game.base.unit.BattleUnit
+import com.game.battle.unit.BattleCampInfo
+import com.game.battle.unit.BattleUnit
 
 /**
  * 阵营
@@ -52,8 +52,8 @@ class BattleCamp(
         /**
          * 创建阵营
          */
-        fun create(battleCampInfo: BattleCampInfo): com.game.battle.base.BattleCamp {
-            val battleCamp = com.game.battle.base.BattleCamp(battleCampInfo.campId)
+        fun create(battleCampInfo: BattleCampInfo): BattleCamp {
+            val battleCamp = BattleCamp(battleCampInfo.campId)
             battleCampInfo.baseMap.forEach {
                 val battleUnit = it.value.createBattleUnit()
                 battleUnit.campId = battleCampInfo.campId

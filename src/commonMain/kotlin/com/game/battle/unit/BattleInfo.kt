@@ -2,7 +2,7 @@ package com.game.battle.unit
 
 import com.game.attr.AttributeSnapshot
 import com.game.attr.BattleAttributeBox
-import com.game.base.ext.BattleArgsExt
+import com.game.battle.ext.BattleArgsExt
 import com.game.buff.BattleBuffBox
 import com.game.skill.BattleSkillBox
 import com.game.skill.SkillSnapshot
@@ -24,7 +24,7 @@ abstract class BattleInfo {
     /**
      * 创建战斗单元
      */
-    fun createBattleUnit(): com.game.battle.unit.BattleUnit {
+    fun createBattleUnit(): BattleUnit {
         val battleUnit = createUnit()
         initUnit(battleUnit)
         return battleUnit
@@ -33,12 +33,12 @@ abstract class BattleInfo {
     /**
      * 创建战斗单元
      */
-    abstract fun createUnit(): com.game.battle.unit.BattleUnit
+    abstract fun createUnit(): BattleUnit
 
     /**
      * 初始化战斗单元
      */
-    fun initUnit(battleUnit: com.game.battle.unit.BattleUnit) {
+    fun initUnit(battleUnit: BattleUnit) {
         // 容器
         // todo id
         battleUnit.attrBox = BattleAttributeBox.create(battleUnit)

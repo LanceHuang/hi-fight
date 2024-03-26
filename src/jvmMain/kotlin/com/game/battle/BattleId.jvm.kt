@@ -1,4 +1,4 @@
-package com.game.base
+package com.game.battle
 
 /**
  * id生成

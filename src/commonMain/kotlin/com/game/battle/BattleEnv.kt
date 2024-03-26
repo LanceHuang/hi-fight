@@ -1,25 +1,25 @@
 package com.game.battle
 
-import com.game.plugin.*
-import com.game.report.BattleReport
+import com.game.battle.plugin.*
+import com.game.battle.report.BattleReport
 
 /**
  * 战斗环境
  */
 open class BattleEnv(
     /** 战斗参数 */
-    val battleArgs: com.game.battle.base.BattleArgs,
+    val battleArgs: BattleArgs,
 ) {
 
     //====================================== 插件 ======================================
     /** 战斗记录 */
-    var battleRecorder: com.game.battle.plugin.BattleRecorder? = null
+    var battleRecorder: BattleRecorder? = null
 
     /** 战斗日志 */
-    var battleLogger: com.game.battle.plugin.BattleLogger? = null
+    var battleLogger: BattleLogger? = null
 
     /** 战斗统计 */
-    var battleStat: com.game.battle.plugin.BattleStat? = null
+    var battleStat: BattleStat? = null
 
     //====================================== 基础信息 ======================================
     /** 战斗id */
@@ -36,7 +36,7 @@ open class BattleEnv(
 
     //====================================== 战斗信息 ======================================
     /** 战斗阵营 */
-    val campMap: MutableMap<Int, com.game.battle.base.BattleCamp> = mutableMapOf()
+    val campMap: MutableMap<Int, BattleCamp> = mutableMapOf()
 
     /**
      * 初始化
@@ -83,7 +83,7 @@ open class BattleEnv(
      */
     private fun initBattleCamp() {
         this.battleArgs.campMap.forEach {
-            this.campMap[it.key] = com.game.battle.base.BattleCamp.create(it.value)
+            this.campMap[it.key] = BattleCamp.create(it.value)
         }
     }
 

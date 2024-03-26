@@ -1,7 +1,7 @@
 package com.game.battle.report
 
-import com.game.base.BattleResult
-import com.game.base.BattleConfigs
+import com.game.battle.BattleConfigs
+import com.game.battle.BattleResult
 
 /**
  * 战报

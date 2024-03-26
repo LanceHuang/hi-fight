@@ -1,6 +1,6 @@
 package com.game.battle.plugin
 
-import com.game.base.BattleEnv
+import com.game.battle.BattleEnv
 
 /**
  * 默认战斗日志
@@ -8,7 +8,7 @@ import com.game.base.BattleEnv
 class ConsoleBattleLogger(
     /** 战斗环境 */
     private val env: BattleEnv
-) : com.game.battle.plugin.BattleLogger() {
+) : BattleLogger() {
 
     override fun logPrepare() {
         // 基础信息

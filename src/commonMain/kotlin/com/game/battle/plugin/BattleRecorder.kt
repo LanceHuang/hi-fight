@@ -1,6 +1,6 @@
 package com.game.battle.plugin
 
-import com.game.report.BattleReport
+import com.game.battle.report.BattleReport
 
 /**
  * 战斗记录

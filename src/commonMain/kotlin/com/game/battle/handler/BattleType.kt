@@ -7,9 +7,9 @@ enum class BattleType(
     /** 描述 */
     val desc: String,
     /** 处理器 */
-    val handler: com.game.battle.handler.BattleHandler,
+    val handler: BattleHandler,
 ) {
 
-    TURN_BASED("回合制战斗", com.game.battle.handler.DefaultTurnBasedBattleHandler()),
-    REAL_TIME("即时制战斗", com.game.battle.handler.DefaultRealTimeBattleHandler()),
+    TURN_BASED("回合制战斗", DefaultTurnBasedBattleHandler()),
+    REAL_TIME("即时制战斗", DefaultRealTimeBattleHandler()),
 }

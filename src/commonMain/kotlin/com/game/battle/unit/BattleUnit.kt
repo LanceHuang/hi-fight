@@ -10,7 +10,7 @@ import com.game.skill.BattleSkillBox
  */
 abstract class BattleUnit(
     /** 战斗信息 */
-    val battleInfo: com.game.battle.unit.BattleInfo
+    val battleInfo: BattleInfo
 ) {
 
     //====================== 基础信息 =======================

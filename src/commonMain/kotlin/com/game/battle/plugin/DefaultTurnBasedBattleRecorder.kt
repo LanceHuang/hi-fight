@@ -1,11 +1,11 @@
 package com.game.battle.plugin
 
-import com.game.report.TurnBasedBattleReport
+import com.game.battle.report.TurnBasedBattleReport
 
 /**
  * 默认战斗记录
  */
-class DefaultTurnBasedBattleRecorder : com.game.battle.plugin.BattleRecorder {
+class DefaultTurnBasedBattleRecorder : BattleRecorder {
 
     /** 战报 */
     val battleRecorder = TurnBasedBattleReport()

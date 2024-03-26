@@ -1,7 +1,7 @@
 package com.game.battle.handler
 
-import com.game.battle.base.BattleArgs
-import com.game.base.BattleEnv
+import com.game.battle.BattleArgs
+import com.game.battle.BattleEnv
 
 /**
  * 战斗处理器
@@ -9,7 +9,7 @@ import com.game.base.BattleEnv
 interface BattleHandler {
 
     /** 创建战斗环境 */
-    fun createBattle(args: com.game.battle.base.BattleArgs): BattleEnv
+    fun createBattle(args: BattleArgs): BattleEnv
 
     /** 准备战斗 */
     fun prepareBattle(env: BattleEnv)

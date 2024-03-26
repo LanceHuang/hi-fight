@@ -1,8 +1,6 @@
-package com.game
+package com.game.battle
 
-import com.game.base.*
-import com.game.base.unit.PlayerInfo
-import com.game.battle.BattleEngine
+import com.game.battle.unit.PlayerInfo
 import kotlin.test.Test
 
 class BattleEngineTest {
@@ -15,7 +13,7 @@ class BattleEngineTest {
         BattleConfigs.NEED_LOG = true
 
         // 创建参数
-        val battleArgs = com.game.battle.base.BattleArgs(type = 10, mapId = 555)
+        val battleArgs = BattleArgs(type = 10, mapId = 555)
 
         // 添加战斗信息
         var playerIdGen: Long = 1

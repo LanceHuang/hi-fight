@@ -1,6 +1,6 @@
 package com.game.battle.strategy
 
-import com.game.base.BattleEnv
+import com.game.battle.BattleEnv
 
 /**
  * 结束策略

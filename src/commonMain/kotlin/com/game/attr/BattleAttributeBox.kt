@@ -1,6 +1,6 @@
 package com.game.attr
 
-import com.game.base.unit.BattleUnit
+import com.game.battle.unit.BattleUnit
 
 /**
  * 战斗属性容器

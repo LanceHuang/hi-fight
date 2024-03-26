@@ -1,7 +1,7 @@
 package com.game.battle.ext
 
-import com.game.base.unit.BattleUnit
-import com.game.base.BattleConfigs
+import com.game.battle.unit.BattleUnit
+import com.game.battle.BattleConfigs
 import kotlin.math.roundToLong
 
 class HpPercentExtHandler : BattleArgsExtHandler() {

@@ -1,15 +1,15 @@
 package com.game.battle.handler
 
-import com.game.battle.base.BattleArgs
-import com.game.base.BattleConfigs
-import com.game.base.BattleEnv
+import com.game.battle.BattleArgs
+import com.game.battle.BattleConfigs
+import com.game.battle.BattleEnv
 
 /**
  * 回合制战斗
  */
-open class DefaultTurnBasedBattleHandler : com.game.battle.handler.BattleHandler {
+open class DefaultTurnBasedBattleHandler : BattleHandler {
 
-    override fun createBattle(args: com.game.battle.base.BattleArgs): BattleEnv {
+    override fun createBattle(args: BattleArgs): BattleEnv {
         val env = com.game.battle.handler.DefaultTurnBasedBattleEnv(args)
         env.init()
         return env

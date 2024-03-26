@@ -1,6 +1,6 @@
 package com.game.skill
 
-import com.game.base.unit.BattleUnit
+import com.game.battle.unit.BattleUnit
 
 /**
  * 战斗技能容器

@@ -6,7 +6,7 @@ package com.game.battle.unit
 class MonsterInfo(
     /** 怪物名 */
     val monsterName: String = ""
-) : com.game.battle.unit.BattleInfo() {
+) : BattleInfo() {
     override fun createUnit(): BattleUnit {
         return MonsterUnit(this)
     }

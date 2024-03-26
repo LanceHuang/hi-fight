@@ -1,8 +1,5 @@
 package com.game.battle
 
-import com.game.battle.base.BattleArgs
-import com.game.base.BattleEnv
-
 /**
  * 战斗引擎
  */
@@ -13,7 +10,7 @@ class BattleEngine {
         /**
          * 战斗
          */
-        fun fight(battleArgs: com.game.battle.base.BattleArgs): BattleEnv {
+        fun fight(battleArgs: BattleArgs): BattleEnv {
             val battleHandler = battleArgs.battleType.handler
             val battleEnv = battleHandler.createBattle(battleArgs)
             battleHandler.prepareBattle(battleEnv)
