@@ -26,8 +26,6 @@ class BattleEngineTest {
         val battleArgs = TurnBasedBattleArgs(type = 10, mapId = 555)
         battleArgs.addBattleInfo(BattleCampType.ATTACKER.id, attackerMap)
         battleArgs.addBattleInfo(BattleCampType.DEFENDER.id, defenderMap)
-//        battleArgs.campMap[BattleCampType.ATTACKER.id]?.baseMap[1]?.addExt(BattleArgsExt.HP_PERCENT, 5000)
-//        battleArgs.campMap[BattleCampType.DEFENDER.id]?.baseMap[1]?.addExt(BattleArgsExt.HP_PERCENT, 8000)
 
         // 计算战斗
         val battleEnv = BattleEngine.performBattle(battleArgs)

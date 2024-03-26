@@ -60,7 +60,7 @@ open class BattleEnv(
 
         // 战斗日志
         if (BattleConfigs.NEED_LOG) {
-            this.battleLogger = ConsoleBattleLogger(this)
+            this.battleLogger = ConsoleBattleLogger()
         } else {
             this.battleLogger = EmptyBattleLogger()
         }
@@ -74,19 +74,17 @@ open class BattleEnv(
      */
     private fun initBattleCamp() {
         for (entry in this.battleArgs.campMap) {
-            // 初始化
+            // 初始化单元
             val battleCamp = BattleCamp(entry.key)
             for (innerEntry in entry.value.baseMap) {
-                val battleUnit = innerEntry.value.createBattleUnit()
-                battleUnit.initUnit()
-                battleCamp.addStaticUnit(innerEntry.key, battleUnit)
+                battleCamp.addStaticUnit(innerEntry.key, innerEntry.value.createBattleUnit())
             }
+            this.campMap[entry.key] = battleCamp
 
             // 拓展参数
             for (innerEntry in entry.value.extMap) {
                 innerEntry.key.handler.handleExt(battleCamp, innerEntry.value)
             }
-            this.campMap[entry.key] = battleCamp
         }
     }
 

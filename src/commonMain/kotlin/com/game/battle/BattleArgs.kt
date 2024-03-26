@@ -49,8 +49,10 @@ open class BattleArgs(
      * 添加战斗信息
      */
     fun addBattleInfo(campId: Int, posId: Int, battleInfo: BattleInfo) {
-        val campInfo = this.campMap.getOrPut(campId) { BattleCampInfo() }
-        campInfo.addBattleInfo(posId, battleInfo)
+        if (this.campMap[campId] == null) {
+            this.campMap[campId] = BattleCampInfo()
+        }
+        this.campMap[campId]?.addBattleInfo(posId, battleInfo)
     }
 
     /**

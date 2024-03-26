@@ -5,12 +5,9 @@ import com.game.battle.BattleEnv
 /**
  * 默认战斗日志
  */
-class ConsoleBattleLogger(
-    /** 战斗环境 */
-    private val env: BattleEnv
-) : BattleLogger() {
+class ConsoleBattleLogger : BattleLogger() {
 
-    override fun logPrepare() {
+    override fun logPrepare(env: BattleEnv) {
         // 基础信息
         val args = env.battleArgs
         println("玩法【${args.type}】地图【${args.mapId}】种子【${args.seed}】创建时间【${args.createTime}】")
@@ -24,7 +21,7 @@ class ConsoleBattleLogger(
         }
     }
 
-    override fun logSettle() {
+    override fun logSettle(env: BattleEnv) {
         val costTime = env.settleTime - env.createTime
         println("战斗结果【${env.result}】耗时【${costTime}ms】")
     }

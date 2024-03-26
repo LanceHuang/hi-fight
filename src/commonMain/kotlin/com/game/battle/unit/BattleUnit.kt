@@ -2,6 +2,7 @@ package com.game.battle.unit
 
 import com.game.attr.AttributeType
 import com.game.attr.BattleAttributeBox
+import com.game.battle.BattleId
 import com.game.buff.BattleBuffBox
 import com.game.skill.BattleSkillBox
 
@@ -43,7 +44,11 @@ abstract class BattleUnit(
     /**
      * 初始化战斗单元
      */
-    fun initUnit() {
+    fun init(campId: Int, posId: Int) {
+        this.campId = campId
+        this.posId = posId
+        this.id = this.campId * 10000L + this.posId
+
         // 容器
         this.attrBox = BattleAttributeBox.create(this)
         this.attrBox?.init(this.battleInfo.attrSnapshot)

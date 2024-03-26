@@ -1,10 +1,7 @@
 package com.game.battle.unit
 
 import com.game.attr.AttributeSnapshot
-import com.game.attr.BattleAttributeBox
 import com.game.battle.ext.BattleArgsExt
-import com.game.buff.BattleBuffBox
-import com.game.skill.BattleSkillBox
 import com.game.skill.SkillSnapshot
 
 /**
@@ -12,14 +9,14 @@ import com.game.skill.SkillSnapshot
  */
 abstract class BattleInfo {
 
+    /** 拓展参数 */
+    val extMap: MutableMap<BattleArgsExt, Any> = mutableMapOf()
+
     /** 属性快照 */
     var attrSnapshot: AttributeSnapshot? = null
 
     /** 技能快照 */
     var skillSnapshot: SkillSnapshot? = null
-
-    /** 拓展参数 */
-    val extMap: MutableMap<BattleArgsExt, Any> = mutableMapOf()
 
     /**
      * 添加拓展参数

@@ -23,11 +23,7 @@ class BattleCamp(
      */
     fun addStaticUnit(staticIndex: Int, unit: BattleUnit) {
         staticMap[staticIndex] = unit
-
-        // 初始化
-        unit.campId = campId
-        unit.posId = staticIndex
-        unit.id = createUnitId(unit)
+        staticMap[staticIndex]?.init(campId, staticIndex)
     }
 
     /**
@@ -35,27 +31,18 @@ class BattleCamp(
      */
     fun addDynamicUnit(unit: BattleUnit) {
         dynamicMap[dynamicIndex] = unit
+        dynamicMap[dynamicIndex]?.init(campId, dynamicIndex)
         dynamicIndex++
-
-        // 初始化
-        unit.campId = campId
-        unit.posId = dynamicIndex
-        unit.id = createUnitId(unit)
-    }
-
-    /**
-     * 生成单元id
-     */
-    private fun createUnitId(unit: BattleUnit): Long {
-        return unit.campId * 10000L + unit.posId
     }
 
     /**
      * 判断是否全部阵亡
      */
     fun isAllDead(): Boolean {
-        staticMap.values.forEach {
-            if (!it.isDead()) return false
+        for (entry in staticMap) {
+            if (!entry.value.isDead()) {
+                return false
+            }
         }
         return true
     }
